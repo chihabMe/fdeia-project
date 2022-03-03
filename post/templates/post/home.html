@@ -1,6 +1,7 @@
 
-
 {% extends 'base.html' %}
+
+{% load static %}
 
 
 
@@ -21,11 +22,27 @@ homes
 <form method='post' class='search--form'> 
  {% csrf_token %} 
 <div class="input-group">
-    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="button" class="btn btn-outline-primary">search</button>
+    <input type="search" class="form-control rounded inp " placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+    <button type="button" class="btn btn-outline-primary btn-ed inp">search</button>
   </div>
 </form>
-</div>
 
+<div class='results'>
+    <div class='result'>
+        <img class='result-img' src='https://picsum.photos/60/60'/>
+        <div class='info'>
+        <h4 class='result-user'>Chihab</h4>
+        <h5 class='result-user'>fans 43</h5>
+    </div>
+    </div>
+    <div class='result'>
+        <img class='result-img' src='https://picsum.photos/60/60'/>
+        <div class='info'>
+        <h4 class='result-user'>Chihab</h4>
+        <h5 class='result-user'>fans 43</h5>
+    </div>
+    </div>
+</div>
+</div>
 
 {% endblock content %}
