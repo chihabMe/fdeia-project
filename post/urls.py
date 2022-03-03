@@ -6,5 +6,6 @@ app_name = 'post'
 
 
 urlpatterns = [ 
-    path('',views.home,name='home')
+    path('',views.home,name='home'),
+path('search/',views.search,name='search'),
 ]

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% load static %}
@@ -6,7 +5,8 @@
 
 
 {% block links %}
-<link rel='stylesheet' href='{% static "css/home.css" %}'></link>
+<link rel='stylesheet' href='{% static "css/home.css" %}'>
+</link>
 {% endblock links %}
 
 {% block title %}
@@ -16,33 +16,34 @@ homes
 
 <div class='home--page'>
 
-<!--
+    <!--
     seach from
 -->
-<form method='post' class='search--form'> 
- {% csrf_token %} 
-<div class="input-group">
-    <input type="search" class="form-control rounded inp " placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <button type="button" class="btn btn-outline-primary btn-ed inp">search</button>
-  </div>
-</form>
+    <form action='{% url "post:search" %}' method='get' class='search--form'>
 
-<div class='results'>
-    <div class='result'>
-        <img class='result-img' src='https://picsum.photos/60/60'/>
-        <div class='info'>
-        <h4 class='result-user'>Chihab</h4>
-        <h5 class='result-user'>fans 43</h5>
+        <div class="input-group" >
+            <input name='qr' type="search" class="form-control rounded inp " placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+            <button class="btn btn-outline-primary btn-ed inp">search</button>
+        </div>
+    </form>
+    {% if search %}
+    <div class='results'>
+        {% if results %}
+        {% for res in results %}
+        <div class='result'>
+            <img class='result-img' src='{{user.profile.image.url}}' />
+            <div class='info'>
+                <h4 class='result-user'>{{user.username}}</h4>
+                <h5 class='result-user'>fans 43</h5>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h4 class='result-user'>no results</h4>
+        {% endif%}
     </div>
-    </div>
-    <div class='result'>
-        <img class='result-img' src='https://picsum.photos/60/60'/>
-        <div class='info'>
-        <h4 class='result-user'>Chihab</h4>
-        <h5 class='result-user'>fans 43</h5>
-    </div>
-    </div>
-</div>
+    {% endif %}
 </div>
 
 {% endblock content %}

@@ -19,12 +19,15 @@
     <header class = 'main--header'>
         <nav class='header--nav'>
             <ul class='nav--menu'>
-             <li class ='menu--item'>home</li>
-             <li class ='menu--item'>search</li>
-             <li class ='menu--item'>news</li>
-             <li class ='menu--item'>about</li>
+             <li ><a class ='menu--item' href='{% url "post:home" %}'> home</a></li>
+             <li ><a class ='menu--item' href='{% url "post:search" %}'>search</a></li>
+             <li ><a class ='menu--item'>news</a></li>
+             <li ><a class ='menu--item'>about</a></li>
             </ul>
         </nav>
+        <div class='accounts'>
+            <i class="bi bi-person"></i>
+        </div>
     </header>
 
 
