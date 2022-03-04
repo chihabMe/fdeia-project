@@ -6,4 +6,6 @@ urlpatterns = [
     path('login/',views.login_page,name ='login'),
     path('signup/',views.registration_page,name='register'),
     path('logout/',views.logout_page,name ='logout'),
+    path('<slug:username>/profile',views.profile_page,name ='profile'),
+
 ]

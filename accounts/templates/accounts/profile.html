@@ -4,11 +4,37 @@
 {{request.user.uername}} profile
 {% endblock title  %}
 {% block links  %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 {% endblock links %}
 {% block content %}
 
 <div class="profile-page">
+    <div class="profile-wrapper">
+        <div class="profile-glass">
+        </div>
+        <div class="profile--info">
+            <img class="profile--user--image" src="{{user.profile.image.url}}" />
+            <h3 class="profile--user--username">{{user.username}}</h3>
+            <p class="profile--user--bio">{{user.profile.bio}}</p>
+        </div>
+        {% if form %}
+        <form class="post-form" method="post">
+            {% csrf_token %}
+            <div class="form--field">
+                {{form.body}}
+            </div>
+            <button class="post-form-button">post</button>
+        </form>
+        
+       {% endif %}
+       <div class="profile--posts">
+        {% for post in posts %}
+        <a class="profile--post " href="{% url 'post:post-details' post.slug %}">
+                <p class="post--body--text">{{post.body}}</p>
+        </a>
+        {% endfor%}
+    </div>
+    </div>
 
 </div>
 {% endblock content %}

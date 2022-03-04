@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User 
 # Create your views here.
+def post_details(request,slug):
+    context = {}
+    return render(request,'post/details.html',context)
 def home (request):
     context  = {
         'search':False

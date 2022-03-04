@@ -26,8 +26,10 @@
         </nav>
         {% if request.user.is_authenticated %}
         <div class='accounts'>
+                <a href="{% url 'accounts:profile' request.user.username %}">
                 <img class="accounts--user--image" src="{{request.user.profile.image.url}}" />
                 <h4 class="accounts--user--username">{{request.user.username}}</h4>
+            </a>
                 <div class="user--actions">
                     <div class="user--action-section"><a class="logout--btn" href="{% url 'accounts:logout' %}">logout</a></div>
                 </div>
