@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links  %}
+<link rel='stylesheet' href='{% static "css/login.css" %}' />
+
+{% endblock links %}
+{% block title %}
+sign up page
+{% endblock title %}
+{% block content  %}
+<div class='login--page'>
+    <form method="post" class='login--form'>
+        {% csrf_token %}
+
+
+        <div class='form--field'>
+            <label class="form--field--label">
+            {{form.username.label}}
+        </label>
+            {{form.username}}
+        </div>
+        <div class='form--field'>
+            <label class="form--field--label">
+                password
+            </label>
+            {{form.password1}}
+        </div>
+        <div class='form--field'>
+            <label class="form--field--label">
+                    password confirmation
+            </label>
+            {{form.password2}}
+        </div>
+        {% if form.errors %}
+
+        <div class="errors">
+
+            <p>Your username is used before or your password is too weak ;-) </p>
+
+        </div>
+        {% endif %}
+        <button class='login--button'>sign up</button>
+        <a href="{% url 'accounts:login' %}" class='login--button extra--class '>login</a>
+
+    </form>
+</div>
+{% endblock content %}

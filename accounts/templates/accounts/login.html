@@ -14,9 +14,15 @@ login page
 
 
         <div class='form--field'>
+            <label class='form--field--label'>
+                {{form.username.label}}
+            </label>
             {{form.username}}
         </div>
         <div class='form--field'>
+            <label class='form--field--label'>
+                {{form.password.label}}
+            </label>
             {{form.password}}
         </div>
 
@@ -29,7 +35,8 @@ login page
         </div>
         {% endif %}
         <button class='login--button'>login</button>
-    
+        <a href="{% url 'accounts:register' %}" class='login--button extra--class '>signup</a>
+
     </form>
 </div>
 {% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{request.user.uername}} profile
+{% endblock title  %}
+{% block links  %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+{% endblock links %}
+{% block content %}
+
+<div class="profile-page">
+
+</div>
+{% endblock content %}

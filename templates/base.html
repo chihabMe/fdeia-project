@@ -27,10 +27,16 @@
         {% if request.user.is_authenticated %}
         <div class='accounts'>
                 <img class="accounts--user--image" src="{{request.user.profile.image.url}}" />
-              <h4 class="accounts--user--username">{{request.user.username}}</h4>
+                <h4 class="accounts--user--username">{{request.user.username}}</h4>
+                <div class="user--actions">
+                    <div class="user--action-section"><a class="logout--btn" href="{% url 'accounts:logout' %}">logout</a></div>
+                </div>
         </div>
         {% else %}
-
+        <div class="none-auth-user">
+            <a class="none-auth-user--act" href="{% url 'accounts:register' %}"></a>
+            <a class="none-auth-user--act login"  href="{% url 'accounts:login' %}"></a>
+        </div>
         {% endif %}
     </header>
 
