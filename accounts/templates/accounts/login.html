@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links  %}
+<link rel='stylesheet' href='{% static "css/login.css" %}' />
+
+{% endblock links %}
+{% block title %}
+login page
+{% endblock title %}
+{% block content  %}
+<div class='login--page'>
+    <form method="post" class='login--form'>
+        {% csrf_token %}
+
+
+        <div class='form--field'>
+            {{form.username}}
+        </div>
+        <div class='form--field'>
+            {{form.password}}
+        </div>
+
+        {% if form.errors %}
+
+        <div class="errors">
+
+            <p>Your username and password didn't match. Please try again.</p>
+
+        </div>
+        {% endif %}
+        <button class='login--button'>login</button>
+    
+    </form>
+</div>
+{% endblock content %}

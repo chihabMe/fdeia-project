@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -9,7 +10,7 @@ def namer (instance ,filename):
     return name 
 class Profile(models.Model):
     bio = models.TextField(blank=True,null=True)
-    image  = models.ImageField(upload_to=namer,blank=True,null=True)
+    image  = models.ImageField(upload_to=namer,default='default/image.png',blank=True,null=True)
     user  = models.OneToOneField(User,on_delete=models.CASCADE,blank=True,null=True)
     def __str__(self):
         return self.user.username
