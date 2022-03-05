@@ -21,23 +21,23 @@ homes
 -->
     <form action='{% url "post:search" %}' method='get' class='search--form'>
 
-        <div class="input-group" >
-            <input name='qr' type="search" class="form-control rounded inp " placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" />
-            <button class="btn btn-outline-primary btn-ed inp">search</button>
+        <div class="search" >
+            <input name='qr'  class="search-inp inp " placeholder="Search" aria-label="Search"
+               />
+            <button class="search-btn inp">search</button>
         </div>
     </form>
     {% if search %}
     <div class='results'>
         {% if results %}
         {% for res in results %}
-        <div class='result'>
-            <img class='result-img' src='{{user.profile.image.url}}' />
+        <a class='result' href="{% url 'accounts:profile' res.username %}">
+            <img class='result-img' src='{{res.profile.image.url}}' />
             <div class='info'>
-                <h4 class='result-user'>{{user.username}}</h4>
+                <h4 class='result-user'>{{res.username}}</h4>
                 <h5 class='result-user'>fans 43</h5>
             </div>
-        </div>
+        </a>
         {% endfor %}
         {% else %}
         <h4 class='result-user'>no results</h4>

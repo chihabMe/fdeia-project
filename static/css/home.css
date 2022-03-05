@@ -11,11 +11,23 @@
     max-width: 500px;
 
 }
+.search{
+    width: 100%;
+    max-width: 450px;
+
+}
 .inp{
     height: 50px;
-    color: var(--teal-color);
     font-size: 1.5rem;
 }
+.search-inp{
+    width: 70%;
+}
+.search-btn{
+    width: 20%;
+    cursor: pointer;
+}
+
 .btn-ed{
     border-color: var(--teal-color);
 }
@@ -28,8 +40,8 @@
     width: 100%;
     max-width: 500px;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
 }
 .result{
     width: 100%;
@@ -56,6 +68,7 @@
     border-radius: 50%;
     width: 70px;
     height: 70px;
+
 }
 
 .info{
@@ -64,4 +77,5 @@
 }
 .result-user{
     color: var(--teal-color);
+    font-size: 1.4rem;
 }

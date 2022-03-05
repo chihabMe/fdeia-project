@@ -15,6 +15,11 @@
         <div class="profile--info">
             <img class="profile--user--image" src="{{user.profile.image.url}}" />
             <h3 class="profile--user--username">{{user.username}}</h3>
+            <div class="user--connections">
+                <h5 class="profile--user--bio">following {{user.profile.get_follwing_count}}</h5>
+                <h5 class="profile--user--bio" id="followers--count">followers {{user.profile.get_followers_count}}</h5>
+                <h5 class="profile--user--bio">people liked him {{user.profile.get_likes_count}}</h5>
+        </div>
             <p class="profile--user--bio">{{user.profile.bio}}</p>
         </div>
         {% if form %}
@@ -26,10 +31,17 @@
             <button class="post-form-button">post</button>
         </form>
         
-       {% endif %}
+        {% else %}
+        <div class="follow--wrapper">
+        <button class="follow-btn" id="follow-btn" user="{{user.id}}">follow</button>
+        <button class="follow-btn" id="like-btn" user="{{user.id}}">like</button>
+
+    </div>
+        {% endif %}
        <div class="profile--posts">
         {% for post in posts %}
-        <a class="profile--post " href="{% url 'post:post-details' post.slug %}">
+        <a class="profile--post " href="{% url 'post
+        :post-details' post.slug %}">
                 <p class="post--body--text">{{post.body}}</p>
         </a>
         {% endfor%}
@@ -37,4 +49,5 @@
     </div>
 
 </div>
+<script src="{% static 'js/profile.js' %}"></script>
 {% endblock content %}

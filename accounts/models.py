@@ -12,6 +12,16 @@ class Profile(models.Model):
     bio = models.TextField(blank=True,null=True)
     image  = models.ImageField(upload_to=namer,default='default/image.png',blank=True,null=True)
     user  = models.OneToOneField(User,on_delete=models.CASCADE,blank=True,null=True)
+    followers = models.ManyToManyField(User,related_name='followers')
+    following =models.ManyToManyField(User,related_name='following')
+    likes = models.ManyToManyField(User,related_name='likes')
+    def get_likes_count(self):
+        return self.likes.count()
+    def get_followers_count(self):
+        return self.followers.count()
+    def get_follwing_count(self):
+        return self.following.count()
+
     def __str__(self):
         return self.user.username
 @receiver(post_save, sender=User)

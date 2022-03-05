@@ -1,15 +1,53 @@
-import re
+import json
 from sqlite3 import connect
 from django.forms import ValidationError
 from django.shortcuts import render
 from .forms import LoginForm,RegistrationForm
 from django.contrib.auth import authenticate,login,logout
-from django.shortcuts import redirect
+from django.shortcuts import redirect,get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.models import User
 from post.models import Post
 from post.forms import PostCreate
+from django.http import JsonResponse
 # Create your views here.
+def user_follow(request):
+    data = {}
+    if request.method=="POST":
+        print("pass======================== ")
+        print(request.POST)
+        print("pass======================== ")
+        user_id = request.POST.get("user_id")
+        user = get_object_or_404(User,id=user_id)
+        if request.user in user.profile.followers.all():
+            request.user.profile.following.remove(user) 
+            user.profile.followers.remove(request.user)
+            data['msg']='success'
+            data['operation']='removing'
+            data["count"]=user.profile.get_followers_count();
+        else:
+            request.user.profile.following.add(user) 
+            user.profile.followers.add(request.user)
+            data['msg']='success'
+            data['operation']='adding'
+            data["count"]=user.profile.get_followers_count();
+        data['method']=request.method
+
+        return JsonResponse(data)   
+def user_like(request):
+    data = {}
+    if request.method=="POST":
+        user_id = request.POST.get("user_id")
+        user = get_object_or_404(User,id=user_id)
+        if request.user in user.profile.likes.all():
+            user.profile.likes.remove(request.user)
+            data['msg']='success'
+            data['operation']='removing'
+        else:
+            user.profile.likes.add(request.user)
+            data['msg']='success'
+            data['operation']='adding'
+    return JsonResponse(data)
 def profile_page(request,username=None):
     if username:
         user = User.objects.get(username=username)
