@@ -148,3 +148,33 @@
     flex-direction: row    ;
     justify-content: space-around;
 }
+
+/*
+boi eddit 
+*/
+.bio--wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.bio--eddit--button{
+    background-color: transparent;
+    width: 3rem;
+    height: 3rem;
+    border:none;
+    cursor: pointer;
+    transition:all 0.3s ease ;
+}
+.bio--eddit--button:hover > svg{
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+bio--eddit--button>svg{
+    width: 100%;
+    height: 100%;
+    color: wheat;
+}

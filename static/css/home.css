@@ -79,3 +79,75 @@
     color: var(--teal-color);
     font-size: 1.4rem;
 }
+
+/*
+posts 
+*/
+.followed--results{
+    width: 100%;
+    max-width: 700px;
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.followed--result{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    background-color: var(--sec-color);
+    padding: 1rem;
+    border-radius: 5px;
+}
+.followed--result--top{
+
+    display: flex;
+    gap: 20px;
+
+}
+.followed--result--top--user--image{
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+}
+.top--left--side{
+    display: flex;
+    flex-direction: column;
+    
+}
+.followed--result--top--user--title{
+    font-size: 1.9rem;
+    color: var(--teal-color);
+}
+.followed--result--top--user--username{
+    font-size: 1.6rem;
+    color: var(--text-color);
+    opacity: 0.8;   
+}
+.followed--result--body{
+    font-size: 1.6rem;
+    padding: 1rem;
+    color: var(--text-color);
+}
+.followed--result--bottom{
+    background-color: var(--teal-color);
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    padding: 1rem 0;
+
+}
+.post--action--btn{ 
+    background-color: transparent;
+    width: 3rem;
+    height: 3rem;
+    border:none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.post--action--btn:hover{
+    opacity: 0.7;
+}

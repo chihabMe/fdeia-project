@@ -1,4 +1,5 @@
 
+
 from django.db import models
 from django.contrib.auth.models import User 
 from django.urls import reverse
@@ -9,7 +10,7 @@ class Post(models.Model):
     title  = models.CharField(max_length=140)
     body = models.TextField()
     
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag',related_name='tags')
     likes = models.ManyToManyField('Tag',related_name='likes')
     slug = models.SlugField(blank=True,null=True)

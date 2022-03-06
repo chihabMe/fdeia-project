@@ -12,6 +12,7 @@ a{
     --blue-color:#094a6a;
     --teal-color:#28b9b7;
     --text-color:#f3f3f3;
+    --teal-color--light:rgb(38, 43, 43);
 }
 html,body{
     font-size: 10px;
