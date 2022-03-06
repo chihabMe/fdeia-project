@@ -14,9 +14,7 @@ from django.http import JsonResponse
 def user_follow(request):
     data = {}
     if request.method=="POST":
-        print("pass======================== ")
-        print(request.POST)
-        print("pass======================== ")
+
         user_id = request.POST.get("user_id")
         user = get_object_or_404(User,id=user_id)
         if request.user in user.profile.followers.all():
@@ -35,8 +33,8 @@ def user_follow(request):
 
         return JsonResponse(data)   
 def user_like(request):
-    print("like")
     data = {}
+
     if request.method=="POST":
         user_id = request.POST.get("user_id")
         user = get_object_or_404(User,id=user_id)

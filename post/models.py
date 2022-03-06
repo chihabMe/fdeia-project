@@ -12,7 +12,7 @@ class Post(models.Model):
     
     user = models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag',related_name='tags')
-    likes = models.ManyToManyField('Tag',related_name='likes')
+    likes = models.ManyToManyField(User,related_name='post_likes')
     slug = models.SlugField(blank=True,null=True)
     date = models.DateTimeField( auto_now=False, auto_now_add=True)
     update = models.DateTimeField( auto_now=True, auto_now_add=False)
@@ -28,6 +28,8 @@ class Post(models.Model):
         super(Post,self).save(*args, **kwargs)
     def __str__(self) :
         return self.title
+    class Meta:
+        ordering =('-date','-update')
 class Tag(models.Model):
     title = models.CharField(max_length=120)
     date = models.DateTimeField( auto_now=False, auto_now_add=True)

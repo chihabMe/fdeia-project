@@ -132,13 +132,18 @@ posts
     color: var(--text-color);
 }
 .followed--result--bottom{
-    background-color: var(--teal-color);
     display: flex;
     justify-content: center;
     gap: 4rem;
     align-items: center;
     padding: 1rem 0;
 
+}
+.post--likes--wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
 }
 .post--action--btn{ 
     background-color: transparent;
@@ -151,3 +156,29 @@ posts
 .post--action--btn:hover{
     opacity: 0.7;
 }
+
+.post--heart > svg{
+    fill: rgb(236, 101, 101);
+    animation: showOn 0.4s ease;
+}
+.post--likes--count{
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+@keyframes showOn {
+    0%{
+
+        transform: scale(0.8);
+    }
+
+    50%{
+        transform: scale(1.1)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+.post--comment--add > svg{
+    fill :var(--teal-color)
+}
+
