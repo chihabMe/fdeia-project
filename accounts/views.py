@@ -35,6 +35,7 @@ def user_follow(request):
 
         return JsonResponse(data)   
 def user_like(request):
+    print("like")
     data = {}
     if request.method=="POST":
         user_id = request.POST.get("user_id")
@@ -47,6 +48,7 @@ def user_like(request):
             user.profile.likes.add(request.user)
             data['msg']='success'
             data['operation']='adding'
+        data["count"]=user.profile.get_likes_count();
     return JsonResponse(data)
 def profile_page(request,username=None):
     if username:
@@ -71,10 +73,18 @@ def profile_page(request,username=None):
 
             
             return redirect(reverse("accounts:profile",args={username:request.user.username})) 
+    liked = request.user in user.profile.likes.all()
+    followed = request.user in user.profile.followers.all()
+    print('-------------')
+    print(liked)
+    print(followed)
+    print('-------------')
     context = {
         "user":user,
         'posts':posts,
-        'form':my_form
+        'form':my_form,
+        'followed':followed,
+        'liked':liked
     }
     return render(request,'accounts/profile.html',context)
 def login_page(request):

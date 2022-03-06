@@ -18,7 +18,7 @@
             <div class="user--connections">
                 <h5 class="profile--user--bio">following {{user.profile.get_follwing_count}}</h5>
                 <h5 class="profile--user--bio" id="followers--count">followers {{user.profile.get_followers_count}}</h5>
-                <h5 class="profile--user--bio">people liked him {{user.profile.get_likes_count}}</h5>
+                <h5 class="profile--user--bio" id ='likes--count'>people liked him {{user.profile.get_likes_count}}</h5>
         </div>
             <p class="profile--user--bio">{{user.profile.bio}}</p>
         </div>
@@ -33,8 +33,20 @@
         
         {% else %}
         <div class="follow--wrapper">
+
+        {% if followed %}
+        <button class="follow-btn cancel" id="follow-btn" user="{{user.id}}">unfollow</button>
+        {% else %}
         <button class="follow-btn" id="follow-btn" user="{{user.id}}">follow</button>
+
+        {%endif%}
+        {% if liked %}
+        <button class="follow-btn cancel" id="like-btn" user="{{user.id}}">dislike</button>
+
+        {% else %}
         <button class="follow-btn" id="like-btn" user="{{user.id}}">like</button>
+
+        {%endif%}
 
     </div>
         {% endif %}
