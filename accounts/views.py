@@ -10,7 +10,21 @@ from django.contrib.auth.models import User
 from post.models import Post
 from post.forms import PostCreate
 from django.http import JsonResponse
+from .models import Profile
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
+def user_profile_image_change(request):
+    data = {}
+    data['success']=False
+    if request.method=="POST":
+        image = request.FILES.get("image")
+        profile = Profile.objects.get(user=request.user)
+        profile.image=image 
+        profile.save()
+        data['imageUrl']=profile.image.url
+        data['success']=True
+    return JsonResponse(data)
 def user_follow(request):
     data = {}
     if request.method=="POST":

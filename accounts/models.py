@@ -10,7 +10,7 @@ def namer (instance ,filename):
     return name 
 class Profile(models.Model):
     bio = models.TextField(blank=True,null=True)
-    image  = models.ImageField(upload_to=namer,default='default/image.png',blank=True,null=True)
+    image  = models.ImageField(upload_to=namer,default='../static/default/1.png',blank=True,null=True)
     user  = models.OneToOneField(User,on_delete=models.CASCADE,blank=True,null=True)
     followers = models.ManyToManyField(User,related_name='followers')
     following =models.ManyToManyField(User,related_name='following')
