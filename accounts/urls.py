@@ -10,5 +10,5 @@ urlpatterns = [
     path('user-like',views.user_like),
     path('user-follow',views.user_follow),
     path('user-profile-image-change',views.user_profile_image_change),
-
+    path('user-profile-boi-change',views.user_profile_boi_change),
 ]

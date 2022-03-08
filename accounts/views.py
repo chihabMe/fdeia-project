@@ -14,6 +14,18 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
+def user_profile_boi_change(request):
+    data = {}
+    data['success']=False
+    if request.method=="POST":
+        boi_body = request.POST.get("bioBody")
+        profile = Profile.objects.get(user=request.user)
+        profile.bio=boi_body 
+        profile.save()
+        data['bio']=profile.bio
+        data['success']=True
+    return JsonResponse(data)
+@login_required
 def user_profile_image_change(request):
     data = {}
     data['success']=False

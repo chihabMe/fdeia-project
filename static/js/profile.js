@@ -25,7 +25,7 @@ const likeCount = document.querySelector("#likes--count")
 const profileUserImage = document.querySelector("#profile--user--image")
 let userId = likeBtn!=null ?  followBtn.getAttribute("userId"):null
 //
-const userAction = async (type,userId=null,image=null)=>{
+const userAction = async (type,userId=null,image=null,bioBody=null)=>{
 
     let data = new FormData()
 
@@ -61,8 +61,47 @@ if(image){
 }
 
 }
-}
+if(type=='bioEdit'){
 
+    console.log("eu");
+    data.append('bioBody',bioBody)
+    config.data=data
+    let resData = await fetch('http://127.0.0.1:8000/accounts/user-profile-boi-change',config)
+    return resData.json()
+}
+}
+//profile boi eddit
+let hiddenBoiText = document.querySelector("#profile--user--bio--eddit")
+let BoiText = document.querySelector("#profile--user--bio")
+let showHideHiddenTextButton = document.querySelector("#bio--eddit--button")
+let showHideHiddenBoiText = false 
+showHideHiddenTextButton.addEventListener('click',async()=>{
+    if(!showHideHiddenBoiText){
+        hiddenBoiText.style.display='block';
+        showHideHiddenTextButton.innerHTML=`
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+</svg>
+`
+
+    }else{
+        
+        let boiBody = hiddenBoiText.value
+        
+        hiddenBoiText.style.display='none'
+       showHideHiddenTextButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+</svg>`
+    console.log(boiBody)
+    BoiText.textContent=boiBody    
+    let res_data = await userAction('bioEdit',null,null,boiBody)
+    console.log(BoiText.textContent)
+    console.log(res_data)
+    
+    }
+    showHideHiddenBoiText=!showHideHiddenBoiText
+})
+//
 
 // profile image change 
 
