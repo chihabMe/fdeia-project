@@ -23,7 +23,7 @@ const followUrl = document.location.protocol+document.location.host+'/accounts/'
 const followerscCount = document.querySelector("#followers--count")
 const likeCount = document.querySelector("#likes--count")
 const profileUserImage = document.querySelector("#profile--user--image")
-let userId = likeBtn!=null ?  followBtn.getAttribute("userId"):null
+let userId = followBtn!=null ?  followBtn.getAttribute("user"):null
 //
 const userAction = async (type,userId=null,image=null,bioBody=null)=>{
 
@@ -75,7 +75,7 @@ let hiddenBoiText = document.querySelector("#profile--user--bio--eddit")
 let BoiText = document.querySelector("#profile--user--bio")
 let showHideHiddenTextButton = document.querySelector("#bio--eddit--button")
 let showHideHiddenBoiText = false 
-showHideHiddenTextButton.addEventListener('click',async()=>{
+showHideHiddenTextButton && showHideHiddenTextButton.addEventListener('click',async()=>{
     if(!showHideHiddenBoiText){
         hiddenBoiText.style.display='block';
         showHideHiddenTextButton.innerHTML=`
@@ -106,8 +106,7 @@ showHideHiddenTextButton.addEventListener('click',async()=>{
 // profile image change 
 
 const profileImage = document.querySelector('#chose--image')
-console.log(profileImage)
-profileImage.addEventListener("change",async ()=>{
+profileImage && profileImage.addEventListener("change",async ()=>{
     let image = profileImage.files[0]
 
     if(image){
@@ -133,8 +132,8 @@ profileImage.addEventListener("change",async ()=>{
 
 
 likeBtn && likeBtn.addEventListener("click",async ()=>{
-
-    let res_data = await userAction('like',userId);
+    console.log(userId)
+    let res_data = await userAction('like',userId,null,null);
     console.log(res_data)
     likeCount.textContent = 'people liked him '+res_data.count
     if(res_data.operation=='adding'){

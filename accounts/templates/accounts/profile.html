@@ -19,6 +19,7 @@
             {% else %}
             <img class="profile--user--image" id='profile--user--image' src="{% url static 'default/1.png' %}" />
             {% endif %}
+            {% if form %}
             <label for='chose--image' class="profile--user--image--change">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
                       <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -26,7 +27,8 @@
                     </svg>
 
             </label>
-            <input type="file" name="chose--image" id='chose--image'>
+            <input type="file" name="chose--image" id='chose--image'/>
+            {% endif %}
             </div>
 
             <h3 class="profile--user--username">{{user.username}}</h3>
@@ -39,6 +41,7 @@
             </div>
             <div class="bio--wrapper">
                 <p class="profile--user--bio" id='profile--user--bio'>{{user.profile.bio}}</p>
+                {% if form %}
                 <textarea class="profile--user--bio--eddit" id='profile--user--bio--eddit'>
                     {{user.profile.bio}}
                 </textarea>
@@ -48,6 +51,8 @@
   <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
 </svg>
                 </button>
+                {% endif %}
+
             </div>
         </div>
         {% if form %}
