@@ -17,7 +17,7 @@ DEBUG = False
 if not DEBUG:
     ALLOWED_HOSTS=['127.0.0.1','fdeia.herokuapp.com']
 else:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS=['127.0.0.1','fdeia.herokuapp.com']
 
 
 # Application definition
@@ -67,6 +67,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 if not DEBUG:
     DATABASES = {
 
@@ -137,14 +138,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-if not DEBUG:
 
-    STATIC_ROOT=  os.path.join(BASE_DIR,'static')
-    django_heroku.settings(locals())
-else:
-    STATICFILES_DIRS = [
-        BASE_DIR / "static/",
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static/",
     ]
+django_heroku.settings(locals())
 STATIC_URL='static/'
 
 MEDIA_URL='media/'
@@ -153,4 +153,40 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
 
-LOGIN_REDIRECT_URL = '/accounts/login'
+
+
+
+
+#log
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}

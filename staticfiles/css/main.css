@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+:root{
+    --sec-color:#112230;
+    --main-color:#2f3447;
+    --blue-color:#094a6a;
+    --teal-color:#28b9b7;
+    --text-color:#f3f3f3;
+    --teal-color--light:rgb(38, 43, 43);
+}
+html,body{
+    font-size: 10px;
+    background-color: var(--main-color);    
+}
+.main--header{
+    padding: 0 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var( --sec-color);
+    align-items: center;
+}
+
+.header--nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding:0 10rem;
+
+}
+.nav--menu{
+    display: flex;
+    gap:20px;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+    max-width: 400px;
+    min-height: 11vh;
+}
+.menu--item{
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.4s ease;
+    padding: 5px 20px;
+    border-radius:4px;
+
+}
+.menu--item:hover{
+
+
+    background-color:var(--main-color) ;
+    color: var(--teal-color);
+}
+
+.accounts{
+    z-index: 10;
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.accounts--user--image{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+.accounts--user--username{
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+.dropdown--menu{
+    position: relative;
+}
+.user--actions{
+
+    position: absolute; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    bottom: -4rem;
+    animation: show 0.5s ease;
+    z-index: 1;
+}
+@keyframes show {
+    0%{
+        transform:translateY(-100%)
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+.accounts:hover .user--actions{
+    display: flex;
+
+}
+.user--action-section{
+    width: 100%;
+    font-size: 1.4rem;
+
+}
+.logout--btn{
+
+    border-radius: 0.3rem;
+    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    color: var(--text-color);
+    background-color: rgb(201, 86, 86);
+}

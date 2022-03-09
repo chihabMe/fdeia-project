@@ -1,0 +1,184 @@
+.home--page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:50px;
+    padding-top: 10rem;
+}
+.search--form{
+    width:100%;
+    max-width: 500px;
+
+}
+.search{
+    width: 100%;
+    max-width: 450px;
+
+}
+.inp{
+    height: 50px;
+    font-size: 1.5rem;
+}
+.search-inp{
+    width: 70%;
+}
+.search-btn{
+    width: 20%;
+    cursor: pointer;
+}
+
+.btn-ed{
+    border-color: var(--teal-color);
+}
+.btn-ed:hover{
+    background-color: var(--teal-color);
+    border-color: var(--teal-color);
+
+}
+.results{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.result{
+    width: 100%;
+    display: flex;
+    width: 100%;
+    max-width: 200px;
+    align-items: center;
+    gap:10px;
+    justify-content: space-around;
+    padding: 10px 20px;
+    box-shadow: 0 0 1px 1px var(--teal-color);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+.result:hover{
+    background-color: var(--teal-color);
+}
+.result:hover .result-user{
+    color: var(--text-color);
+
+}
+.result-img{
+
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+
+}
+
+.info{
+    display:flex;
+    flex-direction: column;
+}
+.result-user{
+    color: var(--teal-color);
+    font-size: 1.4rem;
+}
+
+/*
+posts 
+*/
+.followed--results{
+    width: 100%;
+    max-width: 700px;
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.followed--result{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    background-color: var(--sec-color);
+    padding: 1rem;
+    border-radius: 5px;
+}
+.followed--result--top{
+
+    display: flex;
+    gap: 20px;
+
+}
+.followed--result--top--user--image{
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+}
+.top--left--side{
+    display: flex;
+    flex-direction: column;
+    
+}
+.followed--result--top--user--title{
+    font-size: 1.9rem;
+    color: var(--teal-color);
+}
+.followed--result--top--user--username{
+    font-size: 1.6rem;
+    color: var(--text-color);
+    opacity: 0.8;   
+}
+.followed--result--body{
+    font-size: 1.6rem;
+    padding: 1rem;
+    color: var(--text-color);
+}
+.followed--result--bottom{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    padding: 1rem 0;
+
+}
+.post--likes--wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+}
+.post--action--btn{ 
+    background-color: transparent;
+    width: 3rem;
+    height: 3rem;
+    border:none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.post--action--btn:hover{
+    opacity: 0.7;
+}
+
+.post--heart > svg{
+    fill: rgb(236, 101, 101);
+    animation: showOn 0.4s ease;
+}
+.post--likes--count{
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+@keyframes showOn {
+    0%{
+
+        transform: scale(0.8);
+    }
+
+    50%{
+        transform: scale(1.1)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+.post--comment--add > svg{
+    fill :var(--teal-color)
+}
+
