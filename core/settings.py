@@ -1,7 +1,7 @@
 import os 
 
 from pathlib import Path
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,8 +14,10 @@ SECRET_KEY = 'django-insecure-0g@(cf-l$e=l8f3w6q@#@a2)zf8t%q3^i6%p-m&toa(9ag%&oo
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1','20f3-41-105-118-198.ngrok.io']
+if not DEBUG:
+    ALLOWED_HOSTS=['127.0.0.1','fdeia.herokuapp.com']
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -65,13 +67,34 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+if not DEBUG:
+    DATABASES = {
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+            'NAME': os.environ.get("DATABASENAME"),
+
+            'USER': os.environ.get("DATABASEUSER"),
+
+            'PASSWORD': os.environ.get("DATABASEPASSWORD"),
+
+            'HOST': os.environ.get("DATABASEHOST"),
+
+            'PORT': os.environ.get("DATABASEPORT"),
+
+        }
+
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -114,14 +137,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+if not DEBUG:
+
+    STATIC_ROOT=  os.path.join(BASE_DIR,'static')
+    django_heroku.settings(locals())
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR / "static/",
+    ]
 STATIC_URL='static/'
+
 MEDIA_URL='media/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static/",
-]
 
 
 LOGIN_REDIRECT_URL = '/accounts/login'
