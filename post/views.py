@@ -20,6 +20,8 @@ def post_add(request):
             data['success']=True
             data['length']=True
             data['body']=post.body
+            data['slug']=post.slug
+            
         else:
             data['length']=False
         
@@ -48,7 +50,6 @@ def post_like_add(request):
 
 
 @login_required
-
 def post_details(request,slug):
     context = {}
     return render(request,'post/details.html',context)
