@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0g@(cf-l$e=l8f3w6q@#@a2)zf8t%q3^i6%p-m&toa(9ag%&oo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 if not DEBUG:
     ALLOWED_HOSTS=['127.0.0.1','fdeia.herokuapp.com']
 else:
@@ -82,7 +82,7 @@ if not DEBUG:
 
             'HOST': os.environ.get("DATABASEHOST"),
 
-            'PORT': os.environ.get("DATABASEPORT"),
+            'PORT': os.environ.get("DATABASEPORT    "),
 
         }
 
