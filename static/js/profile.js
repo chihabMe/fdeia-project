@@ -13,8 +13,8 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+let base_url = window.location.protocol+'//'+window.location.host
 const csrftoken = getCookie('csrftoken');
-
 //variables 
 let followBtn = document.querySelector("#follow-btn")
 let likeBtn = document.querySelector("#like-btn")
@@ -25,7 +25,7 @@ const likeCount = document.querySelector("#likes--count")
 const profileUserImage = document.querySelector("#profile--user--image")
 let userId = followBtn!=null ?  followBtn.getAttribute("user"):null
 //
-const userAction = async (type,userId=null,image=null,bioBody=null)=>{
+const userAction = async (type,userId=null,image=null,bioBody=null,postBody=null)=>{
 
     let data = new FormData()
 
@@ -41,21 +41,19 @@ body: data
 }   
     if(userId){
  if(type=='follow'){
-    let resData =  await fetch('http://127.0.0.1:8000/accounts/user-follow',config)
+    let resData =  await fetch(`${base_url}/accounts/user-follow`,config)
     return resData.json()
 }else if(type=='like'){
-    let resData =  await fetch('http://127.0.0.1:8000/accounts/user-like',config)
+    let resData =  await fetch(`${base_url}/accounts/user-like`,config)
     return resData.json()
 
 }
 }
 if(image){
-    console.log('runn')
  if(type=='imageChange'){
-    console.log(image)
     data.append('image',image)
     config.body=data
-        let resData =  await fetch('http://127.0.0.1:8000/accounts/user-profile-image-change',config)
+        let resData =  await fetch(`${base_url}/accounts/user-profile-image-change`,config)
         
         return resData.json()
 }
@@ -63,13 +61,20 @@ if(image){
 }
 if(type=='bioEdit'){
 
-    console.log("eu");
     data.append('bioBody',bioBody)
     config.data=data
-    let resData = await fetch('http://127.0.0.1:8000/accounts/user-profile-boi-change',config)
+    let resData = await fetch(`${base_url}/accounts/user-profile-boi-change`,config)
     return resData.json()
 }
+if(postBody){ 
+    let newData = new FormData();
+    newData.append("postBody",postBody);
+    config.body = newData;
+    console.log(config)
+    let resData = await fetch(`${base_url}/post-add`,config)
+    return resData.json();
 }
+ }
 //profile boi eddit
 let hiddenBoiText = document.querySelector("#profile--user--bio--eddit")
 let BoiText = document.querySelector("#profile--user--bio")
@@ -92,11 +97,8 @@ showHideHiddenTextButton && showHideHiddenTextButton.addEventListener('click',as
        showHideHiddenTextButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
 </svg>`
-    console.log(boiBody)
     BoiText.textContent=boiBody    
     let res_data = await userAction('bioEdit',null,null,boiBody)
-    console.log(BoiText.textContent)
-    console.log(res_data)
     
     }
     showHideHiddenBoiText=!showHideHiddenBoiText
@@ -112,7 +114,6 @@ profileImage && profileImage.addEventListener("change",async ()=>{
     if(image){
         const res_data = await userAction('imageChange',null,image)
 
-        console.log(res_data)
         if(res_data.success){
             profileUserImage.src=res_data.imageUrl
         }
@@ -132,9 +133,7 @@ profileImage && profileImage.addEventListener("change",async ()=>{
 
 
 likeBtn && likeBtn.addEventListener("click",async ()=>{
-    console.log(userId)
     let res_data = await userAction('like',userId,null,null);
-    console.log(res_data)
     likeCount.textContent = 'people liked him '+res_data.count
     if(res_data.operation=='adding'){
     likeBtn.classList.add("cancel");
@@ -160,3 +159,18 @@ followBtn && followBtn.addEventListener("click",async ()=>{
     followBtn.textContent='follow';
 }
 })
+
+
+//porofile post add 
+
+let profilePostButton = document.querySelector("#profile-post-form-button")
+let profilePostForm = document.querySelector("#profile-post-form")
+let profilePostInput = document.querySelector("#profile-post-input")
+profilePostForm.addEventListener("submit",async(e)=>{
+    e.preventDefault();
+    let body = profilePostInput.value;
+    let res_data = await userAction('postAdd',null,null,null,postBody=body);
+    console.log(res_data)
+ }
+  )
+

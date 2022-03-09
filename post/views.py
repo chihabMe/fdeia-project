@@ -7,7 +7,24 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
- 
+@login_required
+def post_add(request):
+    data = {}
+    data['success']=False
+    if request.method=='POST':
+        post_body = request.POST.get("postBody")
+        if post_body and len(str(post_body).strip())>1:
+            print(post_body)
+            post = Post.objects.create(user=request.user,body=post_body)
+            post.save()
+            data['success']=True
+            data['length']=True
+            data['body']=post.body
+        else:
+            data['length']=False
+        
+    return JsonResponse(data)
+
 @login_required
 def post_like_add(request):
     data = {}

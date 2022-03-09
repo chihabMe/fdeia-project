@@ -56,12 +56,12 @@
             </div>
         </div>
         {% if form %}
-        <form class="post-form" method="post">
+        <form class="post-form" method="post" id="profile-post-form">
             {% csrf_token %}
             <div class="form--field">
                 {{form.body}}
             </div>
-            <button class="post-form-button">post</button>
+            <button class="post-form-button" id="profile-post-form-button">post</button>
         </form>
         
         {% else %}
